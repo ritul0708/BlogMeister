@@ -1,9 +1,11 @@
 import { request, gql } from "graphql-request";
+// require('dotenv').config();
 
 // Only Absolute URLs Supported
-// const graphqlAPI = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+const graphCMSAPI = process.env.GRAPHCMS_API_ENDPOINT;
 
-const graphqlAPI = 'https://api-ap-south-1.hygraph.com/v2/cldium5ec0a9301t59g07ezzl/master';
+
+// const graphqlAPI = 'https://api-ap-south-1.hygraph.com/v2/cldium5ec0a9301t59g07ezzl/master';
 
 export const getPosts = async () => {
   const query = gql`
@@ -39,7 +41,7 @@ export const getPosts = async () => {
   // const data = await request(graphqlAPI, query)
 
 
-  const data = await request(graphqlAPI, query)
+  const data = await request(graphCMSAPI, query)
 
   return data.postsConnection.edges;
   
@@ -76,7 +78,7 @@ export const getPostDetails = async (slug) => {
       }
     }
   `;
-  const data = await request(graphqlAPI, query, { slug })
+  const data = await request(graphCMSAPI, query, { slug })
 
   return data.post;
 } 
@@ -96,7 +98,7 @@ export const getRecentPosts = async () => {
     }
   `;
 
-  const data = await request(graphqlAPI, query)
+  const data = await request(graphCMSAPI, query)
 
   return data.posts;
 }
@@ -119,7 +121,7 @@ export const getSimilarPosts = async (categories, slug) => {
     }
   `;
 
-  const data = await request(graphqlAPI, query, { categories, slug })
+  const data = await request(graphCMSAPI, query, { categories, slug })
 
   return data.posts;
 }
@@ -136,7 +138,7 @@ export const getCategories = async () => {
     }
   `;
 
-  const data = await request(graphqlAPI, query)
+  const data = await request(graphCMSAPI, query)
 
   return data.categories;
 }
