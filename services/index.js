@@ -1,11 +1,8 @@
 import { request, gql } from "graphql-request";
-// require('dotenv').config();
 
 // Only Absolute URLs Supported
 const graphCMSAPI = process.env.GRAPHCMS_API_ENDPOINT;
 
-
-// const graphqlAPI = 'https://api-ap-south-1.hygraph.com/v2/cldium5ec0a9301t59g07ezzl/master';
 
 export const getPosts = async () => {
   const query = gql`
@@ -37,9 +34,6 @@ export const getPosts = async () => {
       }
     }
   `;
-
-  // const data = await request(graphqlAPI, query)
-
 
   const data = await request(graphCMSAPI, query)
 
@@ -142,3 +136,15 @@ export const getCategories = async () => {
 
   return data.categories;
 }
+
+
+export const submitComment = async (obj) => {
+  const result  = await fetch('/api/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(obj),
+  });
+  return result.json();
+} 
