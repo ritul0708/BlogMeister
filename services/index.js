@@ -1,8 +1,11 @@
 import { request, gql } from "graphql-request";
+// require('dotenv').config();
 
 // Only Absolute URLs Supported
 const graphCMSAPI = process.env.GRAPHCMS_API_ENDPOINT;
 
+
+// const graphqlAPI = 'https://api-ap-south-1.hygraph.com/v2/cldium5ec0a9301t59g07ezzl/master';
 
 export const getPosts = async () => {
   const query = gql`
@@ -139,45 +142,3 @@ export const getCategories = async () => {
 
   return data.categories;
 }
-
-
-// export const submitComment = async (retryCount = 0, obj) => {
-//   try {
-//     const result = await fetch('/api/comments', { 
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(obj), 
-//     });
-//     return result.json();
-//   } catch (error) {
-//     if (error.status === 429 && retryCount < 5) {
-//       const backoffTime = 2 ** retryCount * 1000;
-//       console.log(`API rate limit exceeded. Retrying in ${backoffTime}ms...`);
-//       await new Promise(resolve => setTimeout(resolve, backoffTime));
-//       return makeApiRequest(retryCount + 1);
-//     }
-//     throw error;
-//   }
-// };
-
-
-export const submitComment = async (obj) => {
-  const result  = await fetch('/api/comments', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(obj),
-  });
-  return result.json();
-} 
-
-// submitComment()
-//   .then(data => {
-//     console.log(data);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
