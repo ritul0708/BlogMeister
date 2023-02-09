@@ -3,10 +3,6 @@ import {PostCard, Categories, PostWidget} from '../components';
 
 import { getPosts } from '../services/index';
 
-// const posts = [
-//   { title: "React Testing", excerpt: "Learn React Testing"},
-//   { title: "Blog Using Next", excerpt: "Learn Making Blogs Using NextJS"},
-// ]
 
 export default function Home ({ posts }) {
   return (
