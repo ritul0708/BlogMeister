@@ -11,15 +11,7 @@ const Comments = ({ slug }) => {
     getComments(slug)
       .then(result => setComments(result));
   }, [])
-
-  comments.map(comment => {
-    console.log(comment.name);
-    console.log(comment.createdAt);
-    console.log(comment.comment);
-    console.log('##############################');
-  })
   
-
 
   return (
     <>
